@@ -75,10 +75,7 @@ The Node.js server handles all file operations:
 ---
 
 ## 📸 Preview
-
-<!-- ![Screenshot](![Screenshot (116)](https://github.com/user-attachments/assets/0b77f465-4f52-4b4c-9be8-bf292141c1a3)
-)
-) -->
+![Screenshot (116)](https://github.com/user-attachments/assets/2684c866-14b1-46c7-bfcd-b6b2fd8d059c)
 
 ---
 
@@ -91,5 +88,5 @@ This project is open source and free to use under the [MIT License](LICENSE).
 ## 🙋‍♂️ Author
 
 Created by **Mahendra Singh Gurjar**  
-- Email: [mhndrmahendragurjar@gmail.com]  
-- LinkedIn: [https://www.linkedin.com/in/msgprofile/]
+- Email: mhndrmahendragurjar@gmail.com  
+- LinkedIn: https://www.linkedin.com/in/msgprofile/
