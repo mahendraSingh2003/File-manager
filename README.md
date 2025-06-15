@@ -22,7 +22,6 @@ file-manager/
 ├── public/
 │   └── index.html     # User interface (HTML + JS + CSS)
 ├── server.js          # Core server logic
-└── README.md          # Project documentation
 ```
 
 ### 📁 files/
