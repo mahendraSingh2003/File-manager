@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📁 Node File Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: #fff;
+      padding: 30px;
+      margin-top: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    form {
+      margin-bottom: 25px;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    form h3 {
+      margin: 0 0 15px;
+      color: #007bff;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #response {
+      background: #f1f3f5;
+      padding: 15px;
+      border-left: 5px solid #007bff;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📁 Node.js File Manager</h1>
+
+    <form action="/create" method="POST">
+      <h3>📝 Create File</h3>
+      <input type="text" name="filename" placeholder="Enter file name (e.g., myfile.txt)" required />
+      <textarea name="content" rows="4" placeholder="Enter file content..."></textarea>
+      <button type="submit">Create File</button>
+    </form>
+
+    <form action="/read" method="GET">
+      <h3>📖 Read File</h3>
+      <input type="text" name="filename" placeholder="Enter file name to read" required />
+      <button type="submit">Read File</button>
+    </form>
+
+    <form action="/delete" method="POST">
+      <h3>❌ Delete File</h3>
+      <input type="text" name="filename" placeholder="Enter file name to delete" required />
+      <button type="submit">Delete File</button>
+    </form>
+
+    <div>
+      <h3>📢 Response</h3>
+      <pre id="response">Waiting for action...</pre>
+    </div>
+  </div>
+
+  <script>
+    const forms = document.querySelectorAll('form');
+    const responseBox = document.getElementById('response');
+
+    forms.forEach(form => {
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const data = new URLSearchParams(new FormData(form));
+        const action = form.getAttribute('action');
+        const method = form.getAttribute('method').toUpperCase();
+
+        const res = await fetch(action + (method === 'GET' ? '?' + data : ''), {
+          method,
+          headers: method === 'POST' ? { 'Content-Type': 'application/x-www-form-urlencoded' } : {},
+          body: method === 'POST' ? data : null
+        });
+
+        const text = await res.text();
+        responseBox.textContent = text;
+      });
+    });
+  </script>
+</body>
+</html>
